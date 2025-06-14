@@ -1,10 +1,14 @@
 import React from 'react';
+import tryImage from './try.jpeg';
 
 const Hero: React.FC = () => {
   return (
     <section className="relative bg-gradient-to-r from-[#001B48] to-[#02457A] text-white py-32 mt-16">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-cover bg-center opacity-10"></div>
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-10"
+          style={{ backgroundImage: `url(${tryImage})` }}
+        ></div>
       </div>
       
       <div className="container mx-auto px-4 relative z-10">
