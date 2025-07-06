@@ -78,7 +78,7 @@ const BlogDialog: React.FC<BlogDialogProps> = ({ blog, isOpen, onClose }) => {
           <p className="text-sm text-[#02457A] mb-6">By {blog.author}</p>
 
           <div
-            className="prose prose-lg max-w-none text-gray-700"
+            className="prose prose-lg max-w-none text-gray-700 text-justify"
             dangerouslySetInnerHTML={{ __html: blog.content }}
           />
         </div>
