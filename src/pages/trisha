@@ -1,0 +1,180 @@
+import React, { useRef } from 'react';
+import { CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { FaLinkedin, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+const teams = {
+  core: [
+    { name: 'Maria Rangwala', role: 'Chairperson', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/maria.png', linkedin: '#' },
+    { name: 'Nitya Maheshwari', role: 'Vice Chair', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/nitya.png', linkedin: '#' },
+    { name: 'Amisha Pandit', role: 'Creatives Head', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/amisha.png', linkedin: '#' },
+    { name: 'Tiya Joshi', role: 'Event Head', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/tiya.png', linkedin: '#' },
+    { name: 'Trisha Paliwal', role: 'Content Writer', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/trisha.png', linkedin: '#' },
+    { name: 'Jahanvi Sisodiya', role: 'Graphic Designer', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/jahanvi.png', linkedin: '#' },
+    { name: 'Aarushi Shah', role: 'Frontend Developer', photo: 'https://raw.githubusercontent.com/vansh-hinduja/aitr-team-assets/main/aarushi.png', linkedin: '#' },
+    { name: 'Priyanshi Lashkar', role: 'Frontend Developer', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/priyanshi.png', linkedin: '#' },
+    { name: 'Prisha Sharma', role: 'ML Developer', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/prisha.png', linkedin: '#' },
+    { name: 'Kanak Sonare', role: 'ML Developer', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/kanak.png', linkedin: '#' },
+    { name: 'Vidhika Anjne', role: 'Event Manager', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/vidhika.png', linkedin: '#' },
+    { name: 'Hitaishi Upadhyay', role: 'Event Manager', photo: 'https://github.com/vansh-hinduja/aitr-team-assets/raw/main/hitaishi.png', linkedin: '#' },
+  ],
+};
+
+export default function ACMWChapterWebsite() {
+  const scrollToSection = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const scrollRef = useRef({});
+
+  const scroll = (team, direction) => {
+    const el = scrollRef.current[team];
+    if (el) {
+      el.scrollBy({ left: direction === 'left' ? -300 : 300, behavior: 'smooth' });
+    }
+  };
+
+  return (
+    <div
+      className="min-h-screen text-[#001B48] p-6 relative"
+      style={{
+        background: 'linear-gradient(to bottom, #e6f2fa, #c9dff1, #b3cae8)', // toned down background
+      }}
+    >
+      {/* Header */}
+      <header className="flex flex-wrap justify-between items-center mb-8 border-b-4 border-[#02457A] pb-4 sticky top-0 bg-white z-50">
+        <h1 className="text-3xl font-bold tracking-tight text-[#02457A]">ACM-W AITR Chapter</h1>
+        <nav className="space-x-4 flex flex-wrap gap-2">
+          <Button onClick={() => scrollToSection('home')} variant="ghost" className="text-[#02457A] hover:text-[#018ABE] font-semibold">Home</Button>
+          <Button onClick={() => scrollToSection('about')} variant="ghost" className="text-[#02457A] hover:text-[#018ABE] font-semibold">About Us</Button>
+          {Object.keys(teams).map((team) => (
+            <Button
+              key={team}
+              onClick={() => scrollToSection(team)}
+              variant="ghost"
+              className="text-[#02457A] hover:text-[#018ABE] font-semibold capitalize"
+            >
+              {team} Team
+            </Button>
+          ))}
+        </nav>
+      </header>
+
+      {/* Home */}
+      <section id="home" className="text-center mb-16">
+        <h2 className="text-4xl font-bold text-[#02457A] mb-4">Welcome to ACM-W</h2>
+        <p className="text-lg text-[#001B48]/90 px-4 max-w-3xl mx-auto">
+          Empowering women in technology through leadership, innovation, and collaboration.
+        </p>
+      </section>
+
+      {/* About Us */}
+      <section id="about" className="mb-20 max-w-6xl mx-auto p-10 rounded-3xl shadow-lg bg-[#f0f7fa]">
+        <h2 className="text-4xl font-semibold text-center text-[#001B48] mb-6">About ACM-W AITR Chapter</h2>
+        <p className="text-lg text-[#001B48] leading-relaxed">
+          The ACM-W AITR Chapter is a dedicated initiative to foster a vibrant community for women in computing. Our mission is to empower female students with opportunities in leadership, technical development, and professional growth. Through interactive workshops, inspiring talks, and collaborative projects, we aim to bridge the gender gap in technology and build a more inclusive tech community.
+        </p>
+      </section>
+
+      {/* Team Sections */}
+      {Object.entries(teams).map(([teamKey, teamMembers]) => (
+        <section key={teamKey} id={teamKey} className="mb-20 max-w-7xl mx-auto relative">
+          <h2 className="text-3xl font-semibold mb-6 text-[#02457A] capitalize">{teamKey} Team</h2>
+
+          {/* Left Scroll Button */}
+          <button
+            onClick={() => scroll(teamKey, 'left')}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: 0,
+              transform: 'translateY(-50%)',
+              backgroundColor: 'rgba(255, 255, 255, 0.6)',
+              borderRadius: '50%',
+              border: 'none',
+              padding: '8px',
+              cursor: 'pointer',
+              zIndex: 20,
+              boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+            }}
+            aria-label="Scroll Left"
+          >
+            <FaChevronLeft size={20} color="#02457A" />
+          </button>
+
+          {/* Right Scroll Button */}
+          <button
+            onClick={() => scroll(teamKey, 'right')}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              right: 0,
+              transform: 'translateY(-50%)',
+              backgroundColor: 'rgba(255, 255, 255, 0.6)',
+              borderRadius: '50%',
+              border: 'none',
+              padding: '8px',
+              cursor: 'pointer',
+              zIndex: 20,
+              boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+            }}
+            aria-label="Scroll Right"
+          >
+            <FaChevronRight size={20} color="#02457A" />
+          </button>
+
+          <div
+            ref={(el) => (scrollRef.current[teamKey] = el)}
+            className="flex overflow-x-auto gap-6 pb-4 scroll-smooth"
+            style={{
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none',
+              padding: '0 40px',
+            }}
+          >
+            <style>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+
+            {teamMembers.map((m, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05, zIndex: 10 }}
+                className="min-w-[250px] max-w-[250px] rounded-3xl shadow-lg border border-[#b2ebf2] bg-white transition-all duration-300 relative"
+                style={{ perspective: 800 }}
+              >
+                <CardContent className="p-6 text-center rounded-2xl">
+                  <motion.div
+                    className="relative rounded-xl mx-auto mb-4 w-32 h-40 flex items-center justify-center bg-gradient-to-br from-[#d0f0fd] via-[#a6e1fa] to-[#83d3f7] shadow-md"
+                    whileHover={{ boxShadow: '0 15px 30px rgba(24, 144, 255, 0.4)' }}
+                  >
+                    <motion.img
+                      src={m.photo}
+                      alt={m.name}
+                      className="w-28 h-36 rounded-xl object-cover border-4 border-white shadow-md"
+                      whileHover={{ scale: 1.1, rotate: 2 }}
+                      loading="lazy"
+                    />
+                  </motion.div>
+                  <h3 className="text-xl font-bold text-[#001B48]">{m.name}</h3>
+                  <p className="text-[#02457A] text-md mt-1">{m.role}</p>
+                  <a href={m.linkedin} target="_blank" rel="noopener noreferrer" className="inline-block mt-3 text-[#018ABE] hover:text-[#02457A]">
+                    <FaLinkedin size={24} />
+                  </a>
+                </CardContent>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <footer className="mt-12 text-center text-[#001B48]/60">
+        © {new Date().getFullYear()} ACM-W AITR Chapter. All rights reserved.
+      </footer>
+    </div>
+  );
+}
